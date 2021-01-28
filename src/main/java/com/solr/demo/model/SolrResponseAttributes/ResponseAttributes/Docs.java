@@ -11,7 +11,7 @@ public class Docs {
     private String[] host;
     private String[] description;
     private double[] boost;
-    private int id;
+    private String id;
     private String[] title;
     private String[] url;
     private String[] content;
@@ -66,11 +66,11 @@ public class Docs {
         this.boost = boost;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
