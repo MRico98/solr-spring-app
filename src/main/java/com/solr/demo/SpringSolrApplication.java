@@ -1,5 +1,6 @@
 package com.solr.demo;
 
+import com.solr.demo.config.SolrRestConfig;
 import com.solr.demo.model.SolrResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,9 +27,10 @@ public class SpringSolrApplication {
 
 	@Bean
 	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
+		String urlQuery = SolrRestConfig.solrUrl + SolrRestConfig.solrCore + "select?" + "q=" + SolrRestConfig.query + "&start=" + SolrRestConfig.start;
 		return args -> {
 			SolrResponse quote = restTemplate.getForObject(
-					"http://localhost:8983/solr/mycore/select?q=*:*&rows=1", SolrResponse.class);
+					urlQuery, SolrResponse.class);
 			log.info(quote.toString());
 		};
 	}
