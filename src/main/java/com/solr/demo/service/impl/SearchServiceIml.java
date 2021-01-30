@@ -20,21 +20,29 @@ public class SearchServiceIml implements SearchService {
 
     @Override
     public Response searchQuery(String query) {
-        SolrResponse response = restTemplate.getForObject(urlSelectCreation(query),SolrResponse.class);
+        SolrResponse response = restTemplate.getForObject(urlCreation(query,SolrRestConfig.selectAction),SolrResponse.class);
         solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
         return response.getResponse();
     }
 
-    private String urlSelectCreation(String query){
+    @Override
+    public Object getSuggestion(String query) {
+        Object response = restTemplate.getForObject(urlCreation(query,SolrRestConfig.suggestAction),Object.class);
+        solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
+        return response;
+    }
+
+    private String urlCreation(String query,String urlAction){
         if(query == null) {
-            solrUrl += "select?q=" + SolrRestConfig.query;
+            solrUrl += urlAction + "?q=" + SolrRestConfig.query;
         }
         else{
-            solrUrl += "select?q=" + query;
+            solrUrl += urlAction + "?q=" + query;
         }
         System.out.println(solrUrl);
         return solrUrl;
     }
+
 
     public String getSolrUrl() {
         return solrUrl;

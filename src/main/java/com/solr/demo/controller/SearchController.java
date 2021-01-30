@@ -18,4 +18,11 @@ public class SearchController {
     public ResponseEntity<Response> search(@RequestParam(required = false) String query){
         return ResponseEntity.ok().body(searchService.searchQuery(query));
     }
+
+    @CrossOrigin
+    @GetMapping("/suggestion")
+    public ResponseEntity<Object> suggestion(@RequestParam(required = false) String query){
+        return ResponseEntity.ok().body(searchService.getSuggestion(query));
+    }
+
 }
