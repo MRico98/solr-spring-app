@@ -1,8 +1,8 @@
 package com.solr.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.solr.demo.model.SolrResponseAttributes.Response;
 import com.solr.demo.model.SolrResponseAttributes.ResponseHeader;
+import com.solr.demo.model.SolrResponseAttributes.Response;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SolrResponse {
