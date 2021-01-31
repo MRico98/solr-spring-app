@@ -1,6 +1,7 @@
 package com.solr.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.solr.demo.model.SolrResponseAttributes.ResponseHeader;
 import com.solr.demo.model.SolrResponseAttributes.Response;
 
@@ -8,6 +9,7 @@ import com.solr.demo.model.SolrResponseAttributes.Response;
 public class SolrResponse {
     private ResponseHeader responseHeader;
     private Response response;
+    private JsonNode highlighting;
 
     public SolrResponse() {
     }
@@ -28,11 +30,20 @@ public class SolrResponse {
         this.response = response;
     }
 
+    public JsonNode getHighlighting() {
+        return highlighting;
+    }
+
+    public void setHighlighting(JsonNode highlighting) {
+        this.highlighting = highlighting;
+    }
+
     @Override
     public String toString() {
         return "SolrResponse{" +
                 "responseHeader=" + responseHeader +
                 ", response=" + response +
+                ", address=" + highlighting +
                 '}';
     }
 }

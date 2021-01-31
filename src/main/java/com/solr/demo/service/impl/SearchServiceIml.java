@@ -19,26 +19,32 @@ public class SearchServiceIml implements SearchService {
     private RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public Response searchQuery(String query) {
-        SolrResponse response = restTemplate.getForObject(urlCreation(query,SolrRestConfig.selectAction),SolrResponse.class);
-        solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
-        return response.getResponse();
-    }
-
-    @Override
-    public Object getSuggestion(String query) {
-        Object response = restTemplate.getForObject(urlCreation(query,SolrRestConfig.suggestAction),Object.class);
+    public SolrResponse searchQuery(String query) {
+        SolrResponse response = restTemplate.getForObject(urlSelectCreation(query) ,SolrResponse.class);
         solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
         return response;
     }
 
-    private String urlCreation(String query,String urlAction){
+    @Override
+    public Object getSuggestion(String query) {
+        Object response = restTemplate.getForObject(urlSuggestCreation(query),Object.class);
+        solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
+        return response;
+    }
+
+    private String urlSelectCreation(String query){
         if(query == null) {
-            solrUrl += urlAction + "?q=" + SolrRestConfig.query;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + SolrRestConfig.query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField ;
         }
         else{
-            solrUrl += urlAction + "?q=" + query;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField ;
         }
+        System.out.println(solrUrl);
+        return solrUrl;
+    }
+
+    private String urlSuggestCreation(String query){
+        solrUrl += SolrRestConfig.suggestAction + "?suggest=true&suggest.build=true&suggest.dictionary=mySuggester&suggest.q=" + query;
         System.out.println(solrUrl);
         return solrUrl;
     }

@@ -7,4 +7,5 @@ public class SolrRestConfig {
     public static final String start = "0";
     public static final String selectAction = "select";
     public static final String suggestAction = "suggest";
+    public static final String highlightingField = "content";
 }

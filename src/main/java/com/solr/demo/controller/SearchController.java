@@ -1,5 +1,6 @@
 package com.solr.demo.controller;
 
+import com.solr.demo.model.SolrResponse;
 import com.solr.demo.model.SolrResponseAttributes.Response;
 import com.solr.demo.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class SearchController {
 
     @CrossOrigin
     @GetMapping("/search")
-    public ResponseEntity<Response> search(@RequestParam(required = false) String query){
+    public ResponseEntity<SolrResponse> search(@RequestParam(required = false) String query){
         return ResponseEntity.ok().body(searchService.searchQuery(query));
     }
 
