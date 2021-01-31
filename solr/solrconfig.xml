@@ -932,7 +932,7 @@
   
   <searchComponent name="suggest" class="solr.SuggestComponent">
   
-  <!--
+  
     <lst name="suggester">
         <str name="name">mySuggester</str>
             <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
@@ -944,8 +944,8 @@
         <str name="buildOnStartup">true</str>
         <str name="buildOnCommit">false</str>
     </lst>
-    -->
     
+    <!--
     <lst name="suggester">
     <str name="name">mySuggester</str>
     <str name="lookupImpl">FuzzyLookupFactory</str>
@@ -957,6 +957,7 @@
     <str name="buildOnCommit">false</str>
    
    </lst>
+   -->
     
 </searchComponent>
 
