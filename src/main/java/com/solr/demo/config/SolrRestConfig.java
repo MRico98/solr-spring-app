@@ -9,4 +9,5 @@ public class SolrRestConfig {
     public static final String suggestAction = "suggest";
     public static final String highlightingField = "content";
     public static final String spellCheckerAction = "spell";
+    public static final String facetingDefaultField = "host";
 }

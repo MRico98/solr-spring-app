@@ -38,10 +38,10 @@ public class SearchServiceIml implements SearchService {
 
     private String urlSelectCreation(String query){
         if(query == null) {
-            solrUrl += SolrRestConfig.selectAction + "?q=" + SolrRestConfig.query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField ;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + SolrRestConfig.query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField;
         }
         else{
-            solrUrl += SolrRestConfig.selectAction + "?q=" + query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField ;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField;
         }
         System.out.println(solrUrl);
         return solrUrl;

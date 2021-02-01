@@ -10,6 +10,7 @@ public class SolrResponse {
     private ResponseHeader responseHeader;
     private Response response;
     private JsonNode highlighting;
+    private JsonNode facet_counts;
 
     public SolrResponse() {
     }
@@ -38,12 +39,21 @@ public class SolrResponse {
         this.highlighting = highlighting;
     }
 
+    public JsonNode getFacet_counts() {
+        return facet_counts;
+    }
+
+    public void setFacet_counts(JsonNode facet_counts) {
+        this.facet_counts = facet_counts;
+    }
+
     @Override
     public String toString() {
         return "SolrResponse{" +
                 "responseHeader=" + responseHeader +
                 ", response=" + response +
-                ", address=" + highlighting +
+                ", highlighting=" + highlighting +
+                ", facet_counts=" + facet_counts +
                 '}';
     }
 }
