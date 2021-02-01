@@ -26,4 +26,9 @@ public class SearchController {
         return ResponseEntity.ok().body(searchService.getSuggestion(query));
     }
 
+    /*
+    @CrossOrigin
+    @GetMapping("/spellchecker")
+    public ResponseEntity<Object> */
+
 }
