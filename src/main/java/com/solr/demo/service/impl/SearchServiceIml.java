@@ -3,6 +3,7 @@ package com.solr.demo.service.impl;
 import com.solr.demo.config.SolrRestConfig;
 import com.solr.demo.model.SolrResponse;
 import com.solr.demo.model.SpellCheckerResponse;
+import com.solr.demo.model.SuggesterResponse;
 import com.solr.demo.service.SearchService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,8 +23,8 @@ public class SearchServiceIml implements SearchService {
     }
 
     @Override
-    public Object getSuggestion(String query) {
-        Object response = restTemplate.getForObject(urlSuggestCreation(query),Object.class);
+    public SuggesterResponse getSuggestion(String query) {
+        SuggesterResponse response = restTemplate.getForObject(urlSuggestCreation(query),SuggesterResponse.class);
         solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
         return response;
     }
