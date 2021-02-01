@@ -4,7 +4,14 @@ $(document).ready(function(){
     $("#submitbutton").click(function(){
         executeQuery($("#searchbar").val())
     });
+    autocompletar();
 });
+
+function autocompletar(){
+$("#searchbar").autocomplete({
+    source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
+});
+}
 
 function executeQuery(query){
     $.ajax({
@@ -31,4 +38,6 @@ function setUrl(query){
     console.log(urlQuery);
     return urlQuery;
 }
+
+
 
