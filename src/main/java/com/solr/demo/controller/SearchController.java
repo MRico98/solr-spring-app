@@ -17,8 +17,8 @@ public class SearchController {
 
     @CrossOrigin
     @GetMapping("/search")
-    public ResponseEntity<SolrResponse> search(@RequestParam(required = false) String query){
-        return ResponseEntity.ok().body(searchService.searchQuery(query));
+    public ResponseEntity<SolrResponse> search(@RequestParam(required = false) String query,@RequestParam(required = false) String startElement){
+        return ResponseEntity.ok().body(searchService.searchQuery(query,startElement));
     }
 
     @CrossOrigin

@@ -16,8 +16,8 @@ public class SearchServiceIml implements SearchService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public SolrResponse searchQuery(String query) {
-        SolrResponse response = restTemplate.getForObject(urlSelectCreation(query) ,SolrResponse.class);
+    public SolrResponse searchQuery(String query,String start) {
+        SolrResponse response = restTemplate.getForObject(urlSelectCreation(query,start) ,SolrResponse.class);
         solrUrl = SolrRestConfig.solrUrl + SolrRestConfig.solrCore;
         return response;
     }
@@ -36,12 +36,12 @@ public class SearchServiceIml implements SearchService {
         return response;
     }
 
-    private String urlSelectCreation(String query){
+    private String urlSelectCreation(String query,String start){
         if(query == null) {
-            solrUrl += SolrRestConfig.selectAction + "?q=" + SolrRestConfig.query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + SolrRestConfig.query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField + "&start=" + start;
         }
         else{
-            solrUrl += SolrRestConfig.selectAction + "?q=" + query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField;
+            solrUrl += SolrRestConfig.selectAction + "?q=" + query + "&hl=on&hl.fl=" + SolrRestConfig.highlightingField + "&facet=on&facet.field=" + SolrRestConfig.facetingDefaultField + "&start=" + start;
         }
         System.out.println(solrUrl);
         return solrUrl;
