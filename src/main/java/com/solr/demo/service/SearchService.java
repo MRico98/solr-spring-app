@@ -6,7 +6,7 @@ import com.solr.demo.model.SpellCheckerResponse;
 import com.solr.demo.model.SuggesterResponse;
 
 public interface SearchService {
-    public SolrResponse searchQuery(String query);
+    public SolrResponse searchQuery(String query,String start);
     public SuggesterResponse getSuggestion(String query);
     public SpellCheckerResponse getSpellCorrection(String query);
 }

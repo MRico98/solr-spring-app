@@ -10,16 +10,84 @@ $(document).ready(function(){
     setSuggester(JSON.parse((sessionStorage.getItem('jsonsuggestion'))).suggest.mySuggester);
     $("#searching + input").click(function() {
         var barraBusqueda = $("#searching");
-        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse');
-        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker');
-        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion');
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"0");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"0");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"0");
+        window.location = "resultspage.html";
+    });
+    $("#page1").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"0");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"0");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"0");
+        window.location = "resultspage.html";
+    });
+    $("#page2").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"10");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"10");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"10");
+        window.location = "resultspage.html";
+    });
+    $("#page3").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"20");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"20");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"20");
+        window.location = "resultspage.html";
+    })
+    $("#page4").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"30");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"30");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"30");
+        window.location = "resultspage.html";
+    });
+    $("#page5").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"40");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"40");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"40");
+        window.location = "resultspage.html";
+    });
+    $("#page6").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"50");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"50");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"50");
+    });
+    $("#page7").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"60");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"60");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"60");
+        window.location = "resultspage.html";
+    });
+    $("#page8").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"70");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"70");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"70");
+    })
+    $("#page9").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"80");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"80");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"80");
+        window.location = "resultspage.html";
+    });
+    $("#page10").click(function(){
+        var barraBusqueda = $("#searching");
+        executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"90");
+        executeQuery(barraBusqueda.val(),urlSpellChecker,'jsonspellchecker',"90");
+        executeQuery(barraBusqueda.val(),urlSuggestion,'jsonsuggestion',"90");
         window.location = "resultspage.html";
     });
 });
 
-async function executeQuery(query,url,storageVariable){
+async function executeQuery(query,url,storageVariable,pageSize){
     $.ajax({
-        url: setUrl(query,url),
+        url: setUrl(query,url,pageSize),
         type: "GET",
         crossDomain: true,
         dataType: 'json',
@@ -36,9 +104,9 @@ async function executeQuery(query,url,storageVariable){
     });
 }
 
-function setUrl(query,urlQuery){
+function setUrl(query,urlQuery,pageSize){
     if(query){
-        urlQuery += "?query=" + query;
+        urlQuery += "?query=" + query + "&startElement="+pageSize;
     }
     console.log(urlQuery);
     return urlQuery;
