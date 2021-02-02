@@ -1,6 +1,7 @@
 const urlSearch = "http://localhost:8080/api/search";
 const urlSpellChecker = "http://localhost:8080/api/spellchecker"
 const urlSuggestion = "http://localhost:8080/api/suggestion";
+let originalQuery;
 
 $(document).ready(function(){
     setActualQuery(JSON.parse(sessionStorage.getItem('jsonresponse')));
@@ -8,6 +9,7 @@ $(document).ready(function(){
     setFacetSearch(JSON.parse(sessionStorage.getItem('jsonresponse')).facet_counts.facet_fields.host);
     setCorrection(JSON.parse(sessionStorage.getItem('jsonspellchecker')).spellcheck);
     setSuggester(JSON.parse((sessionStorage.getItem('jsonsuggestion'))).suggest.mySuggester);
+    console.log($("#page1").val());
     $("#searching + input").click(function() {
         var barraBusqueda = $("#searching");
         executeQuery(barraBusqueda.val(),urlSearch,'jsonresponse',"0");
@@ -157,7 +159,6 @@ function setCorrection(spellsugestions){
     for(contador=0;contador<suggestions.length && contador < 6 ;contador = contador + 2){
         console.log(contador);
         $('#correctionsection article').append(
-            '<p class="parrafo montserrat">' + suggestions[contador] + '</p>'+
             '<p class="parrafo montserrat">' + suggestions[contador+1].suggestion[0] + '</p>'
         );
     }
@@ -165,21 +166,30 @@ function setCorrection(spellsugestions){
 
 function setFacetSearch(facedResult){
     $('#hostsection').append(
-        '<p class="parrafo montserrat">' + facedResult[0] +'   (' + facedResult[1] + ')' + '</p>'+
-        '<p class="parrafo montserrat">' + facedResult[2] +'   (' + facedResult[3] + ')' + '</p>' +
-        '<p class="parrafo montserrat">' + facedResult[4] +'   (' + facedResult[5] + ')' + '</p>' +
-        '<p class="parrafo montserrat">' + facedResult[6] +'   (' + facedResult[7] + ')' +'</p>' +
-        '<p class="parrafo montserrat">' + facedResult[8] +'   (' + facedResult[9] + ')' + '</p>'
+        '<p id="'+ facedResult[0] +'" class="parrafo montserrat" onclick="facetSearch(this.id)">' + facedResult[0] +'   (' + facedResult[1] + ')' + '</p>'+
+        '<p id="'+ facedResult[2] +'" class="parrafo montserrat" onclick="facetSearch(this.id)">' + facedResult[2] +'   (' + facedResult[3] + ')' + '</p>' +
+        '<p id="'+ facedResult[4] +'" class="parrafo montserrat" onclick="facetSearch(this.id)">' + facedResult[4] +'   (' + facedResult[5] + ')' + '</p>' +
+        '<p id="'+ facedResult[6] +'" class="parrafo montserrat" onclick="facetSearch(this.id)">' + facedResult[6] +'   (' + facedResult[7] + ')' +'</p>' +
+        '<p id="'+ facedResult[9] +'" class="parrafo montserrat" onclick="facetSearch(this.id)">' + facedResult[8] +'   (' + facedResult[9] + ')' + '</p>'
     );
 }
 
+function facetSearch(facetQuery){
+    var barraBusqueda = $("#searching");
+    executeQuery(barraBusqueda.val() + ' and host:' + facetQuery,urlSearch,'jsonresponse',"0");
+    executeQuery(barraBusqueda.val() + ' and host:' + facetQuery,urlSpellChecker,'jsonspellchecker',"0");
+    executeQuery(barraBusqueda.val() + ' and host:' + facetQuery,urlSuggestion,'jsonsuggestion',"0");
+    window.location = "resultspage.html";
+}
+
 function setSuggester(suggestion){
-    console.log(suggestion);
-    console.log(Object.entries(suggestion)[0][1].suggestions[0].term);
-    $('#searchsuggestion article').append(
-        '<p class="parrafo montserrat">' + Object.entries(suggestion)[0][1].suggestions[0].term + '</p>' +
-        '<p class="parrafo montserrat">' + Object.entries(suggestion)[0][1].suggestions[1].term + '</p>'
-    );
+    console.log(Object.entries(suggestion)[0][1].suggestions);
+    if(Object.entries(suggestion)[0][1].suggestions.length !== 0){
+        $('#searchsuggestion article').append(
+            '<p class="parrafo montserrat">' + Object.entries(suggestion)[0][1].suggestions[0].term + '</p>' +
+            '<p class="parrafo montserrat">' + Object.entries(suggestion)[0][1].suggestions[1].term + '</p>'
+        );
+    }
 }
 
 function textEdition(content){
