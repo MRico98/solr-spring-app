@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Busqueda y recuperacion de informacion</title>
+    <link rel="stylesheet" href="../styles/resultstyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="pagebody">
+    <aside class="box">
+        <div id="asidesection">
+            <section id = "titlebusqueda" class="roboto fontsize24">
+                Busqueda
+            </section>
+            <section id="searchaside">
+                <form>
+                    <input id="searching">
+                    <input type="button" value="Buscar">
+                </form>
+            </section>
+            <section id="correctionsection" class="roboto">
+                Sugerencias de escritura:
+                <article>
+
+                </article>
+            </section>
+            <section id="searchsuggestion" class="roboto">
+                Podrias intentar buscar:
+                <article>
+
+                </article>
+            </section>
+            <section id="hostsection" class="roboto">
+                Host:
+            </section>
+        </div>
+    </aside>
+    <section id ="resultsection" class="box">
+    </section>
+</div>
+</body>
+<script src="../js/resultPageScript.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</html>
