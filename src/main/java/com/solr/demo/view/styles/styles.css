@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+}
+
+#backgroundimage{
+    margin: auto;
+    background: url("../images/inicio.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 900px;
+}
+
+#backgroundsection{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-height: 658px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchsection{
+    align-self: center;
+    width: 100%;
+    max-width: 969px;
+    height: 296px;
+    background: rgba(0, 0, 0, 0.42);
+    border-radius: 20px;
+}
+
+#downsection{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 321px;
+    background: white;
+}
+
+#indextext{
+    display: flex;
+    align-items: flex-end;
+    margin: auto;
+    width: 634px;
+    height: 50%;
+    color: white;
+    text-align: center;
+}
+
+.fontsize48{
+    font-size: 48px;
+}
+
+.roboto{
+    font-family: 'Roboto',sans-serif;
+}
+
+#searchbarsection{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#searchbar {
+    width: 554px;
+    height: 61px;
+    border-radius: 20px 0 0 20px;
+}
+
+#submitbutton {
+    height: 69px;
+    width: 149px;
+    background-color: #FF5500;
+    float: right;
+    border-style: none;
+    border-radius: 0 20px 20px 0;
+    color: white;
+}
+
+#solrfooter{
+    margin: auto;
+    width: 445px;
+    background: url("../images/background.png") center no-repeat;
+    background-size: 313px 309px;
+    height: 309px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.montserrat{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.fontsize34{
+    font-size: 34px;
+}
+
+.fontsize24{
+    font-size: 24px;
+}
+
+.fontweight200{
+    font-weight: 200;
+}
+
+#solrfooter p{
+
+}
+
+@media only screen and (max-height: 809px) {
+    #backgroundsection{
+        max-height: 400px;
+    }
+}
