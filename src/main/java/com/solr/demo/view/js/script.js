@@ -35,7 +35,7 @@ async function executeQuery(query,url,storageVariable){
 
 function setUrl(query,urlQuery){
     if(query){
-        urlQuery += "?query=" + query;
+        urlQuery += "?query=" + query + "&startElement=0";
     }
     console.log(urlQuery);
     return urlQuery;
